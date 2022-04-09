@@ -57,6 +57,7 @@ for i in range(height):
     print()
 print(line)
 
+print()
 
     
     
