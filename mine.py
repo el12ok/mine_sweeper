@@ -1,8 +1,8 @@
 import random
 field = []
-width = 10 
-height = 10 
-bomb_numbers = 5
+width = 3 
+height = 3 
+bomb_numbers = 2
 bomb_icon = 9
 x_bomb = 0
 y_bomb = 0
@@ -42,27 +42,51 @@ for i in range(height):
         if i+1<=height-1 and j+1<=width-1 and field[i+1][j+1] == bomb_icon:
             field[i][j] += 1 
             
-horizontal_pattern = "---*"
-vertical_pattern = " |"
-line = "*" + horizontal_pattern*width
+# horizontal_pattern = "---*"
+# vertical_pattern = " |"
+# line = "*" + horizontal_pattern*width
+# for i in range(height):
+#     print(line)
+#     print("|", end = "")
+#     for j in range(width): 
+#         if field[i][j] == 0:
+#             print("  " + vertical_pattern, end = "")
+#         else: 
+#             print(" ", field[i][j], vertical_pattern, sep = "", end = "")
+#     #print("|" + vertical_pattern*width)
+#     print()
+# print(line)
+
+click_field = []
 for i in range(height):
+    click_field.append([])
+    for j in range(width):
+        click_field[i].append(0)
+        
+
+while True: 
+    pos_x, pos_y = input(("Enter coordinates x&y: ")).split()
+    pos_x = int(pos_x)-1
+    pos_y = int(pos_y)-1
+    if field[pos_y][pos_x] == bomb_icon:
+        print("Game over")
+        break 
+    click_field[pos_y][pos_x] = 1
+    horizontal_pattern = "---*"
+    vertical_pattern = " |"
+    line = "*" + horizontal_pattern*width
+    for i in range(height):
+        print(line)
+        print("|", end = "")
+        for j in range(width): 
+            if click_field[i][j] == 0:
+                print("  " + vertical_pattern, end = "")
+            else: 
+                print(" ", field[i][j], vertical_pattern, sep = "", end = "")
+        #print("|" + vertical_pattern*width)
+        print()
     print(line)
-    print("|", end = "")
-    for j in range(width): 
-        if field[i][j] == 0:
-            print("  " + vertical_pattern, end = "")
-        else: 
-            print(" ", field[i][j], vertical_pattern, sep = "", end = "")
-    #print("|" + vertical_pattern*width)
-    print()
-print(line)
-
-print()
-
     
-    
-# create a field with 0
-# add bombs to the field 
-# create a table instead of list
-# add numbers to the field 
-# conditions for gameplay 
+
+# set flags where are bombs 
+# conditions of winning 
